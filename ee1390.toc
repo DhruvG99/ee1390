@@ -1,0 +1,7 @@
+\beamer@sectionintoc {1}{The Original Problem}{3}{0}{1}
+\beamer@sectionintoc {2}{Matrix Transformation}{4}{0}{2}
+\beamer@sectionintoc {3}{Solution}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{Line Of Intersection of Planes}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{Angle Between Planes}{16}{0}{3}
+\beamer@subsectionintoc {3}{3}{Distance Between Point \& Plane}{18}{0}{3}
+\beamer@sectionintoc {4}{Figures}{21}{0}{4}
