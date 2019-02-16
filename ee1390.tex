@@ -1,0 +1,349 @@
+\documentclass{beamer}
+\mode<presentation> 
+{
+\usetheme{Antibes}
+\usecolortheme{crane}
+\setbeamertemplate{footline}[page number]
+}
+ 
+\usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage{enumerate}
+\usepackage{physics}
+\setbeamerfont{caption}{size=\footnotesize}
+\let\vec\mathbf
+ 
+\title[Matrix Project]{Matrices in Coordinate Geometry}
+ 
+\author{Karthik Pagadala (EE17BTECH11049)\\Dhruv Gupta (EP17BTECH11006)}
+\institute[IITH] 
+{
+Indian Institute Of Technology Hyderabad \\
+\medskip
+EE1390 Matrix Project
+}
+
+\date{\today} 
+ 
+\begin{document}
+ 
+\begin{frame}
+\titlepage
+\end{frame}
+ 
+\begin{frame}
+\frametitle{Overview}
+\tableofcontents 
+\end{frame}
+
+%------------------------------------------------
+\section{The Original Problem}
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{The Original Problem}
+JEE (Advanced)2018 - Paper 1 - Q.3
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+Let $P_{1}: 2x + y - z = 3$ and $P_{2}: x + 2y + z = 2$ be two planes. Then, which of the following statement(s) is(are) TRUE?
+\begin{enumerate}[(A)]
+    \item The line of intersection of $P_{1}$ and $P_{2}$ has direction ratios $1,2,-1$
+    \item The line
+    \[
+    \frac{3x-4}{9} = \frac{1-3y}{9}=\frac{z}{3}
+    \]
+    is perpendicular to the line of intersection of $P_{1}$ and $P_{2}$
+    \item The acute angle between $P_{1}$ and $P_{2}$ is 60$^\circ$
+    \item If $P_{3}$ is the plane passing through the point $(4,2,-2)$ and perpendicular to the line of intersection of $P_{1}$ and $P_{2}$, then the distance of the point $(2,1,1)$ from the plane $P_{3}$ is $\tfrac{2}{\sqrt{3}}$
+\end{enumerate}
+\end{frame}
+
+ %----------------
+ \section{Visualization}
+ %------------
+ \begin{frame}
+\frametitle{Visualization}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/totalcombined.png}
+    \caption{Question}
+    \label{D}
+\end{figure}
+\end{frame}
+
+%------------------------------------------------
+\section{Matrix Transformation}
+%-------------------------------------------------
+\begin{frame}
+\frametitle{Matrix Transformation}
+We can transform the problem into matrices in the following way
+\begin{itemize}
+\item The plane can be written in the form 
+    \[
+    \vec{n}^{T}\cdot\vec{x}=d
+    \]
+\item The direction vector of a line in the form: 
+    \[
+    \frac{x-x_{1}}{a}=\frac{y-y_{1}}{b}=\frac{z-z_{1}}{c}
+    \] is $\vec{L}: \begin{bmatrix}a\\b\\c\end{bmatrix}$
+\end{itemize}
+\end{frame} 
+%--------------------------------------------------
+\section{Solution}
+\subsection{Line Of Intersection of Planes}
+\begin{frame}
+\frametitle{Solution}
+
+(A) To find the direction ratios of the line of intersection of $P_{1},P_{2}$
+\begin{itemize}
+\item The two planes have normal vectors $\vec{n_{1}},\vec{n_{2}}$
+\item The cross product, $\vec{n_{1}}\times \vec{n_{2}}$ will give us the direction vector of the line of intersection
+\item 
+\[  \vec{n_{1}}=
+    \begin{bmatrix}
+    2\\1\\-1
+    \end{bmatrix}
+    \vec{n_{2}}=
+    \begin{bmatrix}
+    1\\2\\1
+    \end{bmatrix}
+\]
+\item 
+\[
+    \vec{n_{1}}\times \vec{n_{2}}=
+    \begin{bmatrix}
+    n_{12}n_{23}-n_{13}n_{22} & n_{13}n_{21}-n_{11}n_{23} & n_{11}n_{22}-n_{12}n_{21}
+    \end{bmatrix}^{T}
+\]
+\item 
+\[
+    \vec{n_{1}}\times \vec{n_{2}}=
+    \begin{bmatrix}
+    3 & -3 & 3
+    \end{bmatrix}^{T}
+\]
+\item The resultant ratio can be compared to the given direction ratios
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Alternate Solution (RREF)}
+(A) To find the direction ratios of the line of intersection of $P_{1}: 2x + y - z = 3,P_{2}: x + 2y + z = 2$
+\begin{itemize}
+    \item Let $M=\begin{bmatrix}\vec{n_{1}}\\\vec{n_{2}} \end{bmatrix}$ and $\vec{D}=\begin{bmatrix}D_{1}\\D_{2} \end{bmatrix}$
+    \[
+        M\vec{x}=D
+    \]
+    We take the combined matrix, and find the RREF.
+    \[ [M \mid D]=\left[
+        \begin{array}{ccc|c}
+         2 & 1 & -1 & 3\\1 & 2 & 1 & 2
+        \end{array}
+        \right]
+        \sim
+        \left[
+        \begin{array}{ccc|c}
+         1 & 0 & \textcolor{red}{-1} & \tfrac{4}{3}\\0 & 1 & \textcolor{blue}{1} & \tfrac{1}{3}
+        \end{array}
+        \right]
+    \]
+        Letting z be the parameter
+     \[ 
+     \begin{bmatrix}x-z\\y+z\end{bmatrix}=\begin{bmatrix}\tfrac{4}{3}\\\tfrac{1}{3}\end{bmatrix}\rightarrow\begin{bmatrix}x\\y\end{bmatrix}+z\begin{bmatrix}-1\\1\end{bmatrix}=\begin{bmatrix}\tfrac{4}{3}\\\tfrac{1}{3}\end{bmatrix}
+    \]
+\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{..contd.}
+
+For the equation
+	\[
+	\begin{bmatrix}x\\y\end{bmatrix}-z\begin{bmatrix}a\\b\end{bmatrix}=\begin{bmatrix}c\\d\end{bmatrix}
+	\]
+	\[
+	\frac{x-c}{a}=\frac{y-d}{b}=z
+	\]
+Hence, the direction ratios are $(\textcolor{red}{1},\textcolor{blue}{-1},\textcolor{green}{1})$
+
+	
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Solution}
+
+(B) To test if line of intersection of $P_{1},P_{2}$ is perpendicular to given line 
+\begin{itemize}
+\item The two planes have normal vectors $\vec{n_{1}},\vec{n_{2}}$ and let line of intersection have direction vector $\vec{L_{1}}(3,-3,3)$
+\item The direction ratios of the line $L_{2}$
+\[
+    \frac{3x-4}{9} = \frac{1-3y}{9}=\frac{z}{3}
+\] are $d: (2,-2,1)$
+\item If $L_{1}$ is $\perp$ to $L_{2}$, it is implied to be co-planar with $P_{1},P_{2}$.
+\item Use Scalar Dot Product to check the above.
+    \[
+         \vec{d}^{T}\cdot(\vec{n_{1}}\times \vec{n_{2}})=
+        \begin{bmatrix}
+        2 & -2 & 1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+        1\\-1\\ 1
+        \end{bmatrix}
+        = 5 \neq 0
+    \]
+\end{itemize}
+\end{frame}
+ 
+%------------------------------------------------
+ \subsection{Angle Between Planes}
+\begin{frame}
+\frametitle{Solution}
+
+(C) Finding the angle between planes
+\begin{itemize}
+\item The angles between the planes is the same as the angle between normal vectors $\vec{n_{1}},\vec{n_{2}}$
+\item The angle is given by
+    \[
+    \vec{n_{1}}^{T}\cdot\vec{n_{2}} =\norm{\vec{n_{1}}} \norm{\vec{n_{2}}} \cos \theta
+    \]
+    \[
+    \theta = \arccos{\frac{\begin{bmatrix}2 & 1 & -1\end{bmatrix}\cdot \begin{bmatrix}1\\2\\1\end{bmatrix}}{\sqrt{6}\cdot\sqrt{6}}} = 60^\circ
+    \]
+    
+    
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------
+ \subsection{Distance Between Point \& Plane}
+ \begin{frame}
+
+\frametitle{Solution}
+
+(D) Distance Between Point and Plane
+\begin{itemize}
+\item The component of the vector joining $A(4,2,-2)$ and $P(2,1,1)$ along the normal $n_{3}$ is the distance between the point and plane.
+\item \[
+    dist = \abs{\frac{\vec{n^{T}}\cdot (\vec{A}-\vec{P})}{\norm{n}}}
+\]
+\item \[
+    dist = \abs{\frac{\begin{bmatrix}3 & -3 & 3\end{bmatrix}\cdot(
+    \begin{bmatrix}4\\2\\-2\end{bmatrix}-
+    \begin{bmatrix}2\\1\\1\end{bmatrix})
+    }{\sqrt{27}}} = \frac{2}{\sqrt{3}}
+\]
+\end{itemize}
+\end{frame}
+ 
+%-------------------------------------------
+\section{Figures}
+%-------------------------------------------
+
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}
+    \includegraphics[width=0.7\textwidth,keepaspectratio, trim =2cm 2cm 1cm 1.5cm, clip]{/home/dhruvg/Desktop/ee1390/figs/A1.png}
+    \caption{A - Planes \& Line Of Intersection}
+    \label{A1}
+\end{figure}
+\end{frame}
+
+
+ \begin{frame}
+\frametitle{Visualization}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/newplanes2.png}
+    \caption{A - Planes \& Line Of Intersection}
+    \label{A2}
+\end{figure}
+\end{frame}
+%------------------------------------------------
+ 
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth,keepaspectratio, trim =1cm 1cm 1cm 1.5cm, clip]{/home/dhruvg/Desktop/ee1390/figs/A2.png}
+    \caption{A - Line Of Intersection}
+    \label{A3}
+\end{figure}
+\end{frame}
+ 
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth,keepaspectratio, trim =1cm 1cm 1cm 1.5cm, clip]{/home/dhruvg/Desktop/ee1390/figs/B1.png}
+    \caption{B- Line In Question}
+    \label{B1}
+\end{figure}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/D1.png}
+    \caption{D- Point and Plane}
+    \label{D1}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/D2.png}
+    \caption{D- Point and Plane}
+    \label{D2}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/D3.png}
+    \caption{D- Point and Plane}
+    \label{D3}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Figures}
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{/home/dhruvg/Desktop/ee1390/figs/Dpart2.png}
+    \caption{D- Point and Plane}
+    \label{D4}
+\end{figure}
+\end{frame}
+
+%-------------
+\begin{frame}
+The locus obtained was: $G=\begin{bmatrix}
+x\\y\end{bmatrix}=\frac{1}{3}\begin{bmatrix}a\cos t+b\sin t+1\\a\sin t-b\cos t \end{bmatrix}$
+\[
+\vec{G}=\frac{1}{3}\begin{bmatrix}\cos t & \sin t\\\sin t & -\cos t\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}+\begin{bmatrix}1\\0\end{bmatrix}
+\]
+\[
+\vec{G'}=\begin{bmatrix}\cos t & \sin t\\\sin t & -\cos t\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}
+\]
+\[
+\vec{G'}=R(t)\vec{r} ,  0<t\leq2\pi
+\]
+\[
+\vec{G'}=e^{it}\vec{r} ,  0<t\leq2\pi
+\]
+\[
+\norm{G'}=\norm{r}=\sqrt{a^{2}+b^{2}} ,  0<t\leq2\pi
+\]
+\end{frame}
+%-------------
+
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+\end{document}
